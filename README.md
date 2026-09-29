@@ -8,20 +8,16 @@ A full-stack healthcare consultation assistant that turns a doctor's consultatio
 
 **Live Demo:** https://medinotes-ai.vercel.app
 
-The project started as a simple LLM web application and was progressively expanded with authentication, paid access, streaming responses, structured form input and backend validation. Docker containerisation and AWS deployment are the next stage of development.
+The project started as a simple LLM web application and was progressively expanded with authentication, subscription-gated access, streaming responses, structured form input and backend validation. It has also been containerised with Docker and deployed to AWS using Amazon ECR, AWS Lambda, the Lambda Web Adapter, Lambda Function URLs and Amazon CloudWatch.
 
 ## Walkthrough
 
-![MediNotes AI Walkthrough](docs/screenshots/medinotes-ai-demo.gif)
+![MediNotes AI Walkthrough](docs/vercel_screenshots/medinotes-ai-demo.gif)
 
-The walkthrough shows the current MediNotes AI flow:
+## AWS Deployment
 
-- Sign in to the application
-- Enter synthetic consultation notes
-- Generate a consultation summary
-- Generate follow-up actions for the doctor
-- Generate a patient-friendly email
-- Access the subscription-protected application
+![MediNotes AI running on AWS Lambda](docs/aws_screenshots/03-aws-live-app.png)
+
 
 
 > **Development Status**
@@ -83,8 +79,9 @@ The application also includes user authentication and subscription-based access.
 ### Deployment
 
 - Vercel
+- AWS Lambda
 
-### Planned Infrastructure
+### Cloud Infrastructure
 
 - Docker
 - Amazon ECR
@@ -92,6 +89,14 @@ The application also includes user authentication and subscription-based access.
 - AWS Lambda Web Adapter
 - Lambda Function URLs
 - Amazon CloudWatch
+
+### Branch Structure
+
+
+- `main` — stable Vercel deployment
+- `aws-deployment` — containerised AWS deployment using Docker, Amazon ECR and AWS Lambda
+
+The AWS deployment was developed on a separate branch so infrastructure-specific changes could be introduced without disrupting the stable Vercel deployment.
 
 ---
 
@@ -103,14 +108,21 @@ medinotes-ai/
 │   └── index.py
 │
 ├── docs/
-│   └── screenshots/
-│       ├── 01-medinotes-ai-landing-page.png
-│       ├── 02-consultation-form-synthetic-data.png
-│       ├── 03-generated-consultation-summary.png
-│       ├── 04-doctor-actions-and-patient-email.png
-│       ├── 05-patient-email-output.png
-│       ├── 06-clerk-subscription-billing.png
-│       └── medinotes-ai-demo.gif
+│   ├── vercel_screenshots/
+│   │   ├── 01-medinotes-ai-landing-page.png
+│   │   ├── 02-consultation-form-synthetic-data.png
+│   │   ├── 03-generated-consultation-summary.png
+│   │   ├── 04-doctor-actions-and-patient-email.png
+│   │   ├── 05-patient-email-output.png
+│   │   ├── 06-clerk-subscription-billing.png
+│   │   └── medinotes-ai-demo.gif
+│   │
+│   └── aws_screenshots/
+│       ├── 01-ecr-container-image.png
+│       ├── 02-lambda-function-overview.png
+│       ├── 03-aws-live-app.png
+│       ├── 04-cloudwatch-logs.png
+│       └── 05-cloudwatch-metrics.png
 │
 ├── pages/
 │   ├── _app.tsx
