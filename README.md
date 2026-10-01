@@ -1,14 +1,16 @@
 # MediNotes AI
 
-A full-stack healthcare consultation assistant that turns a doctor's consultation notes into:
+MediNotes AI is a full-stack healthcare consultation assistant that turns clinician-written consultation notes into:
 
 - a structured summary for medical records
-- clear follow-up actions for the doctor
+- clearly extracted follow-up actions
 - a patient-friendly email draft
 
 **Live Demo:** https://medinotes-ai.vercel.app
 
-The project started as a simple LLM web application and was progressively expanded with authentication, subscription-gated access, streaming responses, structured form input and backend validation. It has also been containerised with Docker and deployed to AWS using Amazon ECR, AWS Lambda, the Lambda Web Adapter, Lambda Function URLs and Amazon CloudWatch.
+The project started as a simple LLM application and was progressively developed into a deployed and evaluated AI system with authentication, subscription-gated access, streaming responses, backend validation, Docker containerisation, AWS deployment, LLM observability and automated output evaluation.
+
+The goal was not only to generate useful text, but also to understand how the system behaves, identify failure cases and improve its outputs using measurable evaluation.
 
 ## Walkthrough
 
@@ -20,35 +22,64 @@ The project started as a simple LLM web application and was progressively expand
 
 
 
-> **Development Status**
+> **Project Scope**
 >
-> MediNotes AI is currently under active development and is being tested using synthetic data only.
+> MediNotes AI is tested using synthetic consultation data only.
 >
-> The application is not yet intended for use with real patient information or for clinical decision-making. Before any production healthcare use, additional safeguards would be required, including appropriate regulatory compliance, stronger access controls, audit logging, encryption, data retention policies, patient consent processes, and secure third-party service agreements.
->
-> The long-term goal is to develop MediNotes AI into a production-ready healthcare application that can support clinicians with consultation documentation and patient communication.
+> It is not intended for use with real patient information or for clinical decision-making. A real healthcare deployment would require additional clinical validation, privacy and security controls, regulatory review, auditability, data-governance policies and appropriate human oversight.
 
 ---
 
 ## What the Application Does
 
-A signed-in user can enter:
+A signed-in user enters:
 
 - Patient name
 - Date of visit
 - Consultation notes
 
-The application sends the information to a FastAPI backend, which validates the request and sends a structured prompt to the OpenAI API.
+The FastAPI backend validates the request and sends the consultation context to the OpenAI API.
 
-The response is streamed back to the browser and displayed in three sections:
+The response is streamed back to the browser and presented in three sections:
 
 1. **Summary of visit for the doctor's records**
-2. **Next steps for the doctor**
+2. **Follow-up actions based on the consultation notes**
 3. **Draft of email to patient in patient-friendly language**
 
-The application also includes user authentication and subscription-based access.
+The application also includes Clerk authentication, a free trial and subscription-protected access.
 
 ---
+
+## LLM Observability
+
+MediNotes uses Langfuse to track how the LLM behaves in practice.
+
+The observability layer records information such as:
+
+- prompts and generated responses
+- model used
+- response latency
+- token usage
+- errors
+- evaluation results linked to each generation
+
+Amazon CloudWatch is used to monitor the application and AWS infrastructure, while Langfuse focuses specifically on the behaviour of the LLM.
+
+
+## LLM Evaluation
+
+MediNotes is evaluated using a synthetic consultation dataset so changes to the system can be tested consistently.
+
+The evaluation focuses on:
+
+- **Groundedness** — whether the response stays supported by the consultation notes
+- **Completeness** — whether important information is missed
+- **Instruction following** — whether the required output structure is followed
+- **Patient clarity** — whether the patient-facing email is easy to understand
+- **Unsupported claims** — whether the model introduces information that was not provided
+
+An LLM-as-a-Judge is used to produce structured evaluation results for each test case.
+
 
 ## Tech Stack
 
@@ -69,10 +100,19 @@ The application also includes user authentication and subscription-based access.
 - OpenAI API
 - Server-Sent Events
 
+### LLM Observability and Evaluation
+
+- Langfuse
+- LLM-as-a-Judge
+- Synthetic consultation evaluation dataset
+- Structured evaluation outputs
+- Prompt comparison and improvement
+
 ### Authentication and Billing
 
 - Clerk authentication
 - JWT-based API authentication
+- Free trial access
 - Clerk subscriptions
 - Protected premium access
 
@@ -92,11 +132,11 @@ The application also includes user authentication and subscription-based access.
 
 ### Branch Structure
 
-
 - `main` — stable Vercel deployment
 - `aws-deployment` — containerised AWS deployment using Docker, Amazon ECR and AWS Lambda
+- `llm-evaluation` — Langfuse observability, evaluation dataset and LLM-as-a-Judge development
 
-The AWS deployment was developed on a separate branch so infrastructure-specific changes could be introduced without disrupting the stable Vercel deployment.
+The AWS and evaluation work were developed on separate branches so new infrastructure and AI evaluation features could be tested without disrupting the stable Vercel deployment.
 
 ---
 
@@ -107,6 +147,11 @@ medinotes-ai/
 ├── api/
 │   └── index.py
 │
+|── evaluation/
+|   |── dataset/
+|   |── judge/
+|   └── results/
+|
 ├── docs/
 │   ├── vercel_screenshots/
 │   │   ├── 01-medinotes-ai-landing-page.png
