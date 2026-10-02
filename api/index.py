@@ -4,6 +4,7 @@ from fastapi.responses import StreamingResponse  # type: ignore
 from pydantic import BaseModel  # type: ignore
 from fastapi_clerk_auth import ClerkConfig, ClerkHTTPBearer, HTTPAuthorizationCredentials  # type: ignore
 from langfuse.openai import OpenAI  # type: ignore
+from langfuse import get_client # type: ignore
 
 app = FastAPI()
 
@@ -46,6 +47,7 @@ def consultation_summary(
     user_id = creds.decoded["sub"]
 
     client = OpenAI()
+    langfuse = get_client()
 
     user_prompt = user_prompt_for(visit)
 
@@ -62,18 +64,23 @@ def consultation_summary(
     )
 
     def event_stream():
-        for chunk in stream:
-            text = chunk.choices[0].delta.content
+        try:
+            for chunk in stream:
+                text = chunk.choices[0].delta.content
 
-            if text:
-                lines = text.split("\n")
 
-                for line in lines[:-1]:
-                    yield f"data: {line}\n\n"
-                    yield "data:  \n"
+                if text:
+                    lines = text.split("\n")
 
-                yield f"data: {lines[-1]}\n\n"
+                    for line in lines[:-1]:
+                        yield f"data: {line}\n\n"
+                        yield "data:  \n"
 
+                    yield f"data: {lines[-1]}\n\n"
+    
+        finally:
+            langfuse.flush()
+    
     return StreamingResponse(
         event_stream(),
         media_type="text/event-stream",
