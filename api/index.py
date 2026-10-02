@@ -55,6 +55,7 @@ def consultation_summary(
     ]
 
     stream = client.chat.completions.create(
+        name="medinotes-consultation",
         model="gpt-5-nano",
         messages=prompt,
         stream=True,
