@@ -3,7 +3,7 @@ from fastapi import FastAPI, Depends  # type: ignore
 from fastapi.responses import StreamingResponse  # type: ignore
 from pydantic import BaseModel  # type: ignore
 from fastapi_clerk_auth import ClerkConfig, ClerkHTTPBearer, HTTPAuthorizationCredentials  # type: ignore
-from openai import OpenAI  # type: ignore
+from langfuse.openai import OpenAI  # type: ignore
 
 app = FastAPI()
 
