@@ -76,25 +76,22 @@ with open(dataset_path, "r", encoding="utf-8") as file:
     cases = json.load(file)
 
 print(f"Loaded {len(cases)} evaluation case(s).")
-print(f"First case: {cases[0]['id']}")
+for case in cases:
+    print(f"\nRunning {case['id']}...")
 
-case = cases[0]
-generated_output = generate_improved_response(case)
+    generated_output = generate_improved_response(case)
 
-print("\nGenerated response:\n")
-print(generated_output)
-
-source_context = f"""
+    source_context = f"""
 Patient Name: {case['patient_name']}
 Date of Visit: {case['date_of_visit']}
 Notes:
 {case['notes']}
 """
 
-evaluation = evaluate_response(
-    source_context,
-    generated_output,
-)
+    evaluation = evaluate_response(
+        source_context,
+        generated_output,
+    )
 
-print("\nEvaluation:\n")
-print(evaluation)
+    print(f"\n{case['id']} Evaluation:")
+    print(evaluation)
