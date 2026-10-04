@@ -41,34 +41,19 @@ Notes:
 {case['notes']}
 """
 
-def generate_response(case: dict) -> str:
+def generate_response(case: dict, system_prompt: str, run_name: str) -> str:
     user_prompt = build_generation_prompt(case)
 
     response = client.chat.completions.create(
-        name="medinotes-baseline-evaluation",
+        name=run_name,
         model="gpt-5-nano",
         messages=[
-            {"role": "system", "content": BASELINE_SYSTEM_PROMPT},
+            {"role": "system", "content": system_prompt},
             {"role": "user", "content": user_prompt},
         ],
     )
 
     return response.choices[0].message.content
-
-def generate_improved_response(case: dict) -> str:
-    user_prompt = build_generation_prompt(case)
-
-    response = client.chat.completions.create(
-        name="medinotes-improved-evaluation",
-        model="gpt-5-nano",
-        messages=[
-            {"role": "system", "content": IMPROVED_SYSTEM_PROMPT},
-            {"role": "user", "content": user_prompt},
-        ],
-    )
-
-    return response.choices[0].message.content
-
 
 dataset_path = Path("evaluation/dataset/synthetic_consultations.json")
 
@@ -76,10 +61,11 @@ with open(dataset_path, "r", encoding="utf-8") as file:
     cases = json.load(file)
 
 print(f"Loaded {len(cases)} evaluation case(s).")
-for case in cases:
-    print(f"\nRunning {case['id']}...")
 
-    generated_output = generate_improved_response(case)
+for case in cases:
+    print("\n" + "=" * 80)
+    print(f"RUNNING {case['id']}")
+    print("=" * 80)
 
     source_context = f"""
 Patient Name: {case['patient_name']}
@@ -88,10 +74,46 @@ Notes:
 {case['notes']}
 """
 
-    evaluation = evaluate_response(
-        source_context,
-        generated_output,
+    baseline_output = generate_response(
+        case,
+        BASELINE_SYSTEM_PROMPT,
+        "medinotes-baseline-evaluation",
     )
 
-    print(f"\n{case['id']} Evaluation:")
-    print(evaluation)
+    improved_output = generate_response(
+        case,
+        IMPROVED_SYSTEM_PROMPT,
+        "medinotes-improved-evaluation",
+    )
+
+    baseline_evaluation = evaluate_response(source_context, baseline_output)
+    improved_evaluation = evaluate_response(source_context, improved_output)
+
+    print("\n--- BASELINE RESPONSE ---\n")
+    print(baseline_output)
+
+    print("\n--- BASELINE EVALUATION ---\n")
+    print(baseline_evaluation)
+
+    print("\n--- IMPROVED RESPONSE ---\n")
+    print(improved_output)
+
+    print("\n--- IMPROVED EVALUATION ---\n")
+    print(improved_evaluation)
+
+    print("\n--- COMPARISON SUMMARY ---\n")
+    print(
+        f"Groundedness: {baseline_evaluation.groundedness} -> {improved_evaluation.groundedness}"
+    )
+    print(
+        f"Completeness: {baseline_evaluation.completeness} -> {improved_evaluation.completeness}"
+    )
+    print(
+        f"Instruction following: {baseline_evaluation.instruction_following} -> {improved_evaluation.instruction_following}"
+    )
+    print(
+        f"Patient clarity: {baseline_evaluation.patient_clarity} -> {improved_evaluation.patient_clarity}"
+    )
+    print(
+        f"Unsupported claims: {baseline_evaluation.unsupported_claims} -> {improved_evaluation.unsupported_claims}"
+    )
