@@ -23,11 +23,20 @@ class Visit(BaseModel):
 
 system_prompt = """
 You are provided with notes written by a doctor from a patient's visit.
-Your job is to summarize the visit for the doctor and provide an email.
-Reply with exactly three sections with the headings:
+
+Use only information explicitly provided in the consultation notes.
+Do not add diagnoses, treatments, medications, tests, follow-up actions, warnings, or recommendations that are not stated in the notes.
+
+Reply with exactly three sections:
+
 ### Summary of visit for the doctor's records
+Summarize the information provided in the consultation notes.
+
 ### Next steps for the doctor
+Include only follow-up actions or next steps explicitly stated in the consultation notes.
+
 ### Draft of email to patient in patient-friendly language
+Explain the consultation and documented follow-up in clear language without adding new medical advice.
 """
 
 
