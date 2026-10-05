@@ -1,6 +1,6 @@
-# MediNotes AI
+# MediNote AI
 
-MediNotes AI is a full-stack healthcare consultation assistant that turns clinician-written consultation notes into:
+MediNote AI is a full-stack healthcare consultation assistant that turns clinician-written consultation notes into:
 
 - a structured summary for medical records
 - clearly extracted follow-up actions
@@ -14,17 +14,17 @@ The goal was not only to generate useful text, but also to understand how the sy
 
 ## Walkthrough
 
-![MediNotes AI Walkthrough](docs/vercel_screenshots/medinotes-ai-demo.gif)
+![MediNote AI Walkthrough](docs/vercel_screenshots/medinotes-ai-demo.gif)
 
 ## AWS Deployment
 
-![MediNotes AI running on AWS Lambda](docs/aws_screenshots/03-aws-live-app.png)
+![MediNote AI running on AWS Lambda](docs/aws_screenshots/03-aws-live-app.png)
 
 
 
 > **Project Scope**
 >
-> MediNotes AI is tested using synthetic consultation data only.
+> MediNote AI is tested using synthetic consultation data only.
 >
 > It is not intended for use with real patient information or for clinical decision-making. A real healthcare deployment would require additional clinical validation, privacy and security controls, regulatory review, auditability, data-governance policies and appropriate human oversight.
 
@@ -46,13 +46,13 @@ The response is streamed back to the browser and presented in three sections:
 2. **Follow-up actions based on the consultation notes**
 3. **Draft of email to patient in patient-friendly language**
 
-The application also includes Clerk authentication, a free trial and subscription-protected access.
+The application uses Clerk authentication, allowing signed-in users to access and test the consultation assistant for free.
 
 ---
 
 ## LLM Observability
 
-MediNotes uses Langfuse to track how the LLM behaves in practice.
+MediNote uses Langfuse to track how the LLM behaves in practice.
 
 The observability layer records information such as:
 
@@ -68,7 +68,7 @@ Amazon CloudWatch is used to monitor the application and AWS infrastructure, whi
 
 ## LLM Evaluation
 
-MediNotes uses an offline LLM-as-a-Judge evaluation pipeline to measure how generated outputs behave against the original consultation context.
+MediNote uses an offline LLM-as-a-Judge evaluation pipeline to measure how generated outputs behave against the original consultation context.
 
 The evaluation focuses on:
 
@@ -118,13 +118,12 @@ This evaluation is an engineering benchmark using synthetic data and is not clin
 - Structured evaluation outputs
 - Prompt comparison and improvement
 
-### Authentication and Billing
+### Authentication
 
 - Clerk authentication
 - JWT-based API authentication
-- Free trial access
-- Clerk subscriptions
-- Protected premium access
+- Authenticated access to the consultation assistant
+- Free access for signed-in users
 
 ### Deployment
 
