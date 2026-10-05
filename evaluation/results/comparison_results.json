@@ -1,87 +1,87 @@
 [
-    {
-      "case_id": "case_001",
-      "baseline": {
-        "groundedness": 2,
-        "completeness": 5,
-        "instruction_following": 5,
-        "patient_clarity": 5,
-        "unsupported_claims": 19
-      },
-      "improved": {
-        "groundedness": 5,
-        "completeness": 5,
-        "instruction_following": 5,
-        "patient_clarity": 5,
-        "unsupported_claims": 0
-      }
+  {
+    "case_id": "case_001",
+    "baseline": {
+      "groundedness": 3,
+      "completeness": 5,
+      "instruction_following": 5,
+      "patient_clarity": 5,
+      "unsupported_claims": 11
     },
-    {
-      "case_id": "case_002",
-      "baseline": {
-        "groundedness": 3,
-        "completeness": 5,
-        "instruction_following": 5,
-        "patient_clarity": 5,
-        "unsupported_claims": 13
-      },
-      "improved": {
-        "groundedness": 5,
-        "completeness": 5,
-        "instruction_following": 5,
-        "patient_clarity": 5,
-        "unsupported_claims": 0
-      }
-    },
-    {
-      "case_id": "case_003",
-      "baseline": {
-        "groundedness": 2,
-        "completeness": 5,
-        "instruction_following": 5,
-        "patient_clarity": 4,
-        "unsupported_claims": 24
-      },
-      "improved": {
-        "groundedness": 5,
-        "completeness": 5,
-        "instruction_following": 5,
-        "patient_clarity": 5,
-        "unsupported_claims": 0
-      }
-    },
-    {
-      "case_id": "case_004",
-      "baseline": {
-        "groundedness": 3,
-        "completeness": 5,
-        "instruction_following": 5,
-        "patient_clarity": 5,
-        "unsupported_claims": 7
-      },
-      "improved": {
-        "groundedness": 5,
-        "completeness": 5,
-        "instruction_following": 5,
-        "patient_clarity": 5,
-        "unsupported_claims": 0
-      }
-    },
-    {
-      "case_id": "case_005",
-      "baseline": {
-        "groundedness": 3,
-        "completeness": 5,
-        "instruction_following": 5,
-        "patient_clarity": 5,
-        "unsupported_claims": 9
-      },
-      "improved": {
-        "groundedness": 5,
-        "completeness": 5,
-        "instruction_following": 5,
-        "patient_clarity": 5,
-        "unsupported_claims": 0
-      }
+    "improved": {
+      "groundedness": 5,
+      "completeness": 5,
+      "instruction_following": 5,
+      "patient_clarity": 5,
+      "unsupported_claims": 0
     }
-  ]
+  },
+  {
+    "case_id": "case_002",
+    "baseline": {
+      "groundedness": 2,
+      "completeness": 5,
+      "instruction_following": 5,
+      "patient_clarity": 4,
+      "unsupported_claims": 18
+    },
+    "improved": {
+      "groundedness": 5,
+      "completeness": 5,
+      "instruction_following": 5,
+      "patient_clarity": 5,
+      "unsupported_claims": 0
+    }
+  },
+  {
+    "case_id": "case_003",
+    "baseline": {
+      "groundedness": 2,
+      "completeness": 5,
+      "instruction_following": 5,
+      "patient_clarity": 4,
+      "unsupported_claims": 14
+    },
+    "improved": {
+      "groundedness": 5,
+      "completeness": 5,
+      "instruction_following": 5,
+      "patient_clarity": 5,
+      "unsupported_claims": 0
+    }
+  },
+  {
+    "case_id": "case_004",
+    "baseline": {
+      "groundedness": 3,
+      "completeness": 5,
+      "instruction_following": 5,
+      "patient_clarity": 5,
+      "unsupported_claims": 9
+    },
+    "improved": {
+      "groundedness": 5,
+      "completeness": 5,
+      "instruction_following": 5,
+      "patient_clarity": 5,
+      "unsupported_claims": 0
+    }
+  },
+  {
+    "case_id": "case_005",
+    "baseline": {
+      "groundedness": 2,
+      "completeness": 5,
+      "instruction_following": 5,
+      "patient_clarity": 4,
+      "unsupported_claims": 16
+    },
+    "improved": {
+      "groundedness": 4,
+      "completeness": 5,
+      "instruction_following": 5,
+      "patient_clarity": 5,
+      "unsupported_claims": 1
+    }
+  }
+]
