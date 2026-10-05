@@ -1,0 +1,10 @@
+{
+    "case_id": "case_001",
+    "prompt_version": "improved",
+    "groundedness": 5,
+    "completeness": 5,
+    "instruction_following": 5,
+    "patient_clarity": 5,
+    "unsupported_claims": 0,
+    "feedback": "The response accurately includes all consultation details, preserves the tentative diagnosis, and adds no unsupported clinical claims. It follows the required three-section structure, and the patient email is clear and easy to understand."
+  }

@@ -1,0 +1,38 @@
+[
+    {
+      "id": "case_001",
+      "patient_name": "Jane Smith",
+      "date_of_visit": "29 September 2026",
+      "notes": "Patient presents with persistent cough for 2 weeks. No fever. Chest clear on examination. Blood pressure 120/80. Likely viral bronchitis. Prescribed rest and fluids. Follow up if symptoms persist beyond another week.",
+      "test_focus": "Basic consultation with diagnosis, observations, treatment and follow-up."
+    },
+    {
+        "id": "case_002",
+        "patient_name": "Michael Brown",
+        "date_of_visit": "2 October 2026",
+        "notes": "Patient reports sore throat for 3 days. No difficulty breathing and no chest pain. Temperature 37.2°C. Penicillin allergy documented. Advised warm fluids and rest. Follow up if symptoms worsen.",
+        "test_focus": "Negation, allergy information and follow-up instructions."
+      },
+      {
+        "id": "case_003",
+        "patient_name": "Sarah Lee",
+        "date_of_visit": "3 October 2026",
+        "notes": "Patient reports headaches occurring twice this week. Currently taking paracetamol 500 mg as needed. No nausea or visual changes. Blood pressure 118/76. Advised to keep a headache diary and follow up in two weeks.",
+        "test_focus": "Medication details, negative symptoms and specific follow-up timing."
+      },
+      {
+        "id": "case_004",
+        "patient_name": "David Wilson",
+        "date_of_visit": "3 October 2026",
+        "notes": "Patient reports intermittent dizziness since yesterday. No fainting and no vomiting. Possible dehydration discussed. Advised to increase fluid intake and monitor symptoms. Follow up if dizziness continues for more than 3 days.",
+        "test_focus": "Clinical uncertainty, negation and conditional follow-up."
+      },
+      {
+        "id": "case_005",
+        "patient_name": "Emily Carter",
+        "date_of_visit": "4 October 2026",
+        "notes": "Patient reports mild lower back pain after lifting boxes yesterday. No leg weakness, no numbness and no bladder or bowel changes. Advised rest and to avoid heavy lifting for several days. Follow up if pain does not improve within one week.",
+        "test_focus": "Musculoskeletal complaint, multiple negative symptoms and activity advice."
+      }
+
+  ]

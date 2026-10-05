@@ -1,0 +1,10 @@
+{
+    "case_id": "case_001",
+    "prompt_version": "baseline",
+    "groundedness": 3,
+    "completeness": 5,
+    "instruction_following": 5,
+    "patient_clarity": 5,
+    "unsupported_claims": 11,
+    "feedback": "Includes all key consultation details and follows the required three-section structure. The email is clear and patient-friendly. However, it adds unsupported claims and recommendations, including that no antibiotics were prescribed, antibiotic advice, red-flag reassessment, possible chest X-ray and alternative diagnoses, urgent-care guidance, documenting understanding and adherence, a check-in call, avoiding irritants, and contacting the clinic for worsening symptoms. These additions are not grounded in the consultation notes."
+  }

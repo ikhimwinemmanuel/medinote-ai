@@ -46,7 +46,9 @@ function ConsultationForm() {
             },
             body: JSON.stringify({
                 patient_name: patientName,
-                date_of_visit: visitDate?.toISOString().slice(0, 10),
+                date_of_visit: visitDate
+                    ? `${visitDate.getFullYear()}-${String(visitDate.getMonth() + 1).padStart(2, "0")}-${String(visitDate.getDate()).padStart(2, "0")}`
+                    : undefined,
                 notes,
             }),
 
