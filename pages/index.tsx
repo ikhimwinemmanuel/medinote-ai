@@ -10,7 +10,7 @@ export default function Home() {
         {/* Navigation */}
         <nav className="flex justify-between items-center mb-12">
           <h1 className="text-2xl font-bold text-gray-800 dark:text-gray-200">
-            MediNotes AI
+            MediNote AI
           </h1>
           <div>
             <SignedOut>
@@ -102,7 +102,7 @@ export default function Home() {
           <SignedOut>
             <SignInButton mode="modal">
               <button className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-bold py-4 px-8 rounded-xl text-lg transition-all transform hover:scale-105">
-                Start Free Trial
+              Try MediNote AI
               </button>
             </SignInButton>
           </SignedOut>
